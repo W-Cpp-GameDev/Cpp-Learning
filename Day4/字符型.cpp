@@ -1,15 +1,15 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 int main()
 {
-	//Óï·¨ char ch = 'a'(ÒªÓÃµ¥ÒıºÅ£¬Õ¼Ò»¸ö×Ö½Ú£¬ÇÒµ¥ÒıºÅÄÚ²»ÄÜĞ´Ì«¶à)
+	//è¯­æ³• char ch = 'a'(è¦ç”¨å•å¼•å·ï¼Œå ä¸€ä¸ªå­—èŠ‚ï¼Œä¸”å•å¼•å·å†…ä¸èƒ½å†™å¤ªå¤š)
 	char ch = 'a';
 	cout << ch;
-	cout << "chËùÕ¼×Ö½ÚÊÇ" << sizeof(ch) << endl;
+	cout << "chæ‰€å å­—èŠ‚æ˜¯" << sizeof(ch) << endl;
 	cout << (int)ch << endl;
 	char ch2 = 'A';
 	cout << (int)ch2 << endl;
 	return 0;
-	//ÈôÓÃintÔò½«×Ö·ûaÇ¿ÖÆ×ª»»³ÉÕûĞÎ£¬ÇÒaÎª97£¬AÎª65
+	//è‹¥ç”¨intåˆ™å°†å­—ç¬¦aå¼ºåˆ¶è½¬æ¢æˆæ•´å½¢ï¼Œä¸”aä¸º97ï¼ŒAä¸º65
 	
 }
