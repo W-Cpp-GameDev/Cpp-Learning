@@ -69,7 +69,7 @@ void Addperson(connectionbook*abs)
 			}
 				cout << "请输入联系人手机号" << endl;
 				
-					int phonenum;
+					string phonenum;
 				cin >> phonenum;
 				abs->Calllist[abs->size].Phonenumber = phonenum;
 				cout << "请输入联系人家庭住址" << endl;
