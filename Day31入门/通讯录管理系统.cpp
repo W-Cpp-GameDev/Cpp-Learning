@@ -29,6 +29,22 @@ struct connectionbook
 	int size = 0;//通讯录中当前联系人个数
 };
 
+//读整形函数
+int getint()
+{
+	int n;
+	while (1)
+	{
+		if (cin >> n)
+		{
+			cin.ignore(1024, '\n');
+			return n;
+		}
+		cin.clear();//清理出错状态
+		cin.ignore(1024, '\n');
+		cout << "输入无效请重新输入\n" << endl;
+	}
+}
 //1.封装添加联系人函数
 void Addperson(connectionbook*abs)
 {
@@ -40,7 +56,7 @@ void Addperson(connectionbook*abs)
 		abs->Calllist[abs->size].Name = name;
 		cout << "请输入联系人年龄" << endl;
 		int  age;
-		cin >> age;
+		age = getint();
 		abs->Calllist[abs->size].Age = age;
 		cout << "请选择联系人性别(1-男,2-女)" << endl;
 		
@@ -48,7 +64,7 @@ void Addperson(connectionbook*abs)
 		{
 
 			int sex;
-			cin >> sex;
+			sex = getint();
 			switch (sex)
 			{
 			case 1:
@@ -121,7 +137,6 @@ void popbook(connectionbook *abs)
 		string name;
 		cout << "请输入您要删除的联系人姓名" << endl;
 		cin >> name;
-		isExist(abs, name);
 		if (isExist(abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
@@ -129,7 +144,7 @@ void popbook(connectionbook *abs)
 		}
 		else
 		{
-			for (int i = isExist(abs, name);i < abs->size;i++)
+			for (int i = isExist(abs, name);i < abs->size - 1;i++)
 			{
 				abs->Calllist[i] = abs->Calllist[i + 1];
 			}
@@ -152,7 +167,8 @@ void  Find(connectionbook abs)
 		string name;
 		cout << "请输入您要查找的联系人姓名" << endl;
 		cin >> name;
-		isExist(&abs, name);
+		int id;
+		id = isExist(&abs, name);
 		if (isExist(&abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
@@ -160,8 +176,8 @@ void  Find(connectionbook abs)
 		}
 		else
 		{
-			cout << "姓名:" << abs.Calllist[abs.size].Name << "\t" << "年龄:" << abs.Calllist[abs.size].Age << "\t" << "性别:" << (abs.Calllist[abs.size].Sex==1?"男":"女") << "\t"
-				<< "联系电话:" << abs.Calllist[abs.size].Phonenumber << "\t" << "家庭住址:" << abs.Calllist[abs.size].Address << endl;
+			cout << "姓名:" << abs.Calllist[id].Name << "\t" << "年龄:" << abs.Calllist[id].Age << "\t" << "性别:" << (abs.Calllist[id].Sex==1?"男":"女") << "\t"
+				<< "联系电话:" << abs.Calllist[id].Phonenumber << "\t" << "家庭住址:" << abs.Calllist[id].Address << endl;
 		}
 		break;
 	}
@@ -178,8 +194,7 @@ void change(connectionbook * abs)
 		string name;
 		cout << "请输入您要修改的联系人姓名" << endl;
 		cin >> name;
-		
-		isExist(abs, name);
+		int gg = isExist(abs, name);
 		if (isExist(abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
@@ -188,29 +203,29 @@ void change(connectionbook * abs)
 		else
 		{
 			cout << "请输入联系人姓名" << endl;
-			string name;
-			cin >> name;
-			abs->Calllist[isExist(abs, name)].Name = name;
+			string newname;
+			cin >> newname;
+			abs->Calllist[gg].Name = newname;
 			cout << "请输入联系人年龄" << endl;
 			int  age;
-			cin >> age;
-			abs->Calllist[isExist(abs, name)].Age = age;
+			age = getint();
+			abs->Calllist[gg].Age = age;
 			cout << "请选择联系人性别(1-男,2-女)" << endl;
 			
 			while (true)
 			{
 				int sex;
-				cin >> sex;
+				sex = getint();
 				switch (sex)
 				{
 				case 1:
 				{
-					abs->Calllist[isExist(abs, name)].Sex = sex;
+					abs->Calllist[gg].Sex = sex;
 				}
 				break;
 				case 2:
 				{
-					abs->Calllist[isExist(abs, name)].Sex = sex;
+					abs->Calllist[gg].Sex = sex;
 				}
 				break;
 			    default:
@@ -221,13 +236,13 @@ void change(connectionbook * abs)
 
 				}
 				cout << "请输入联系人人手机号" << endl;
-				int phonenum;
+				string phonenum;
 				cin >> phonenum;
-				abs->Calllist[isExist(abs, name)].Phonenumber = phonenum;
+				abs->Calllist[gg].Phonenumber = phonenum;
 				cout << "请输入联系人家庭住址" << endl;
 				string address;
 				cin >> address;
-				abs->Calllist[isExist(abs, name)].Address = address;
+				abs->Calllist[gg].Address = address;
 				cout << "修改成功" << endl;
 				break;
 			}
@@ -239,9 +254,9 @@ void change(connectionbook * abs)
 	system("cls");
 }
 //清空联系人函数，逻辑清除就行
-void clean(connectionbook abs)
+void clean(connectionbook *abs)
 {
-	abs.size = 0;
+	abs->size = 0;
 	cout << "清除成功" << endl;
 	system("pause");
 	system("cls");
@@ -258,7 +273,7 @@ int main()
 			//"让用户选择功能"
 			int function;
 			cout << "请输入您要使用的功能代号" << endl;
-			cin >> function;
+			function = getint();
 			switch (function)
 			{
 				//		1.添加联系人
@@ -299,7 +314,7 @@ int main()
 				//		6.清空联系人
 			case 6:
 
-				clean(abs);
+				clean(&abs);
 				
 
 				break;
