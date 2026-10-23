@@ -64,7 +64,7 @@ void Addperson(connectionbook*abs)
 			default:
 
 				cout << "您输入有误请重新输入" << endl;
-
+				continue;
 
 			}
 				cout << "请输入联系人手机号" << endl;
@@ -125,6 +125,7 @@ void popbook(connectionbook *abs)
 		if (isExist(abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
+			continue;
 		}
 		else
 		{
@@ -133,6 +134,7 @@ void popbook(connectionbook *abs)
 				abs->Calllist[i] = abs->Calllist[i + 1];
 			}
 			abs->size--;
+			cout << "删除成功" << endl;
 			break;
 		}
 		
@@ -144,16 +146,17 @@ void popbook(connectionbook *abs)
 //查找函数
 void  Find(connectionbook abs)
 {
-	string name;
-	cout << "请输入您要查找的联系人姓名" << endl;
-	cin >> name;
-	isExist(&abs, name);
+	
 	while (true)
 	{
+		string name;
+		cout << "请输入您要查找的联系人姓名" << endl;
+		cin >> name;
 		isExist(&abs, name);
 		if (isExist(&abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
+			continue;
 		}
 		else
 		{
@@ -168,17 +171,19 @@ void  Find(connectionbook abs)
 //修改联系人函数
 void change(connectionbook * abs)
 {
-	string name;
-	cout << "请输入您要修改的联系人姓名" << endl;
+	
 	
 	while (true)
 	{
+		string name;
+		cout << "请输入您要修改的联系人姓名" << endl;
 		cin >> name;
 		
 		isExist(abs, name);
 		if (isExist(abs, name) == -1)
 		{
 			cout << "查无此人请重新输入" << endl;
+			continue;
 		}
 		else
 		{
@@ -211,6 +216,7 @@ void change(connectionbook * abs)
 			    default:
 				{
 					cout << "您输入有误请重新输入" << endl;
+					continue;
 				}
 
 				}
