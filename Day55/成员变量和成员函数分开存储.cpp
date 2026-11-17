@@ -9,6 +9,10 @@ class Person
 	{
 
 	}
+	static void t02()//静态成员函数
+	{
+
+	}
 };
 void test01()
 {
