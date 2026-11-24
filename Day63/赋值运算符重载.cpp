@@ -30,6 +30,7 @@ public:
 		}
 		//深拷贝
 		M_age = new int(*p.M_age);
+		//返回对象本身
 		return *this;
 	}
 };
