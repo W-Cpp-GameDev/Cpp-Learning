@@ -78,6 +78,9 @@ public:
 		cout << "Java,Python,Cpp...(公共分类列表）" << endl;
 	}
 };
+//继承好处：减少重复代码
+// 语法：class 子类 继承方式 父类
+// 子类 又叫 派生类 父类又叫基类
 //Java 页面
 class Java :public BasePage
 {
